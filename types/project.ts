@@ -5,8 +5,8 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
-  githubUrl: string;
+  imageUrl?: string;
+  githubUrl?: string;
   liveUrl?: string;
   technologies: TechStackName[]; // Now uses the type from tech-stacks config
   order: number;

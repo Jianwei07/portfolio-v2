@@ -32,9 +32,9 @@ const Hero = () => {
 
   const techStacks = [
     { name: "React", icon: "/icons/react.svg" },
-    { name: "JavaScript", icon: "/icons/javascript.svg" },
+    { name: "TypeScript", icon: "/icons/typescript.svg" },
     { name: "Java", icon: "/icons/java.svg" },
-    { name: "Flutter", icon: "/icons/flutter.svg" },
+    { name: "NextJS", icon: "/icons/nextjs.svg" },
     { name: "Linux", icon: "/icons/linux.svg" },
     { name: "Python", icon: "/icons/python.svg" },
   ];
