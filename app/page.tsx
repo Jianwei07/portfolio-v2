@@ -11,13 +11,11 @@ export const revalidate = 3600; // Revalidate every hour
 
 export default async function Home() {
   try {
-    // Fetch projects data
     const projects = await getProjects();
-
+    console.log("Fetched Projects:", projects); // Log the fetched data
     return (
       <main className="min-h-screen">
         <Hero />
-        {/* Render Projects with Suspense */}
         <Suspense fallback={<ProjectsSkeleton />}>
           <Projects projects={projects} />
         </Suspense>
@@ -26,8 +24,6 @@ export default async function Home() {
     );
   } catch (error) {
     console.error("Error fetching projects:", error);
-
-    // Render error boundary if fetching fails
     return (
       <main className="min-h-screen">
         <Hero />

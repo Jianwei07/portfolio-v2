@@ -13,7 +13,7 @@ export const TECH_STACKS = {
     icon: "/icons/mui.svg",
     category: "frontend",
   },
-  "Tailwind CSS": {
+  Tailwindcss: {
     icon: "/icons/tailwindcss.svg",
     category: "frontend",
   },
@@ -39,6 +39,18 @@ export const TECH_STACKS = {
     icon: "/icons/flask.svg",
     category: "backend",
   },
+  NextJS: {
+    icon: "/icons/nextjs.svg",
+    category: "backend",
+  },
+  Langchain: {
+    icon: "/icons/langchain-text.svg",
+    category: "backend",
+  },
+  HuggingFace: {
+    icon: "/icons/huggingface.svg",
+    category: "backend",
+  },
 
   // Languages
   JavaScript: {
@@ -55,6 +67,11 @@ export const TECH_STACKS = {
   },
   Dart: {
     icon: "/icons/dart.svg",
+    category: "language",
+  },
+
+  Python: {
+    icon: "/icons/python.svg",
     category: "language",
   },
 
@@ -79,6 +96,14 @@ export const TECH_STACKS = {
   },
   Firebase: {
     icon: "/icons/firebase.svg",
+    category: "database",
+  },
+  Supabase: {
+    icon: "/icons/supabase.svg",
+    category: "database",
+  },
+  Postgres: {
+    icon: "/icons/Postgres.svg",
     category: "database",
   },
 
