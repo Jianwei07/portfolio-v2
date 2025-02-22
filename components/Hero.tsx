@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/legacy/image";
+import { Github, Linkedin } from "lucide-react";
 
 // Reusable Tech Icon Component
 const TechIcon = ({ name, icon }: { name: string; icon: string }) => {
@@ -31,12 +32,11 @@ const Hero = () => {
   }, []);
 
   const techStacks = [
-    { name: "React", icon: "/icons/react.svg" },
-    { name: "TypeScript", icon: "/icons/typescript.svg" },
-    { name: "Java", icon: "/icons/java.svg" },
-    { name: "NextJS", icon: "/icons/nextjs.svg" },
+    { name: "Next.js", icon: "/icons/nextjs.svg" },
+    { name: "HuggingFace", icon: "/icons/huggingface.svg" },
+    { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
     { name: "Linux", icon: "/icons/linux.svg" },
-    { name: "Python", icon: "/icons/python.svg" },
+    { name: "TypeScript", icon: "/icons/typescript.svg" },
   ];
 
   return (
@@ -75,41 +75,29 @@ const Hero = () => {
             </p>
 
             {/* Social Links */}
-            <div className="flex justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex justify-center lg:justify-start gap-6">
               <a
                 href="https://www.linkedin.com/in/liawjianwei/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-300"
+                className="p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200"
                 aria-label="LinkedIn Profile"
               >
-                <Image
-                  src="/icons/linkedin.svg"
-                  alt="LinkedIn"
-                  width={24}
-                  height={24}
-                  className="opacity-75 hover:opacity-100"
-                />
+                <Linkedin className="w-8 h-8 text-gray-600 hover:text-gray-900" />
               </a>
               <a
                 href="https://github.com/Jianwei07"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-300"
+                className="p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200"
                 aria-label="GitHub Profile"
               >
-                <Image
-                  src="/icons/github.svg"
-                  alt="GitHub"
-                  width={24}
-                  height={24}
-                  className="opacity-75 hover:opacity-100"
-                />
+                <Github className="w-8 h-8 text-gray-600 hover:text-gray-900" />
               </a>
             </div>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
               {techStacks.map((tech) => (
                 <TechIcon key={tech.name} name={tech.name} icon={tech.icon} />
               ))}

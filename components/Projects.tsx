@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import {
   Card,
@@ -8,7 +9,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, AlertCircle } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import TechStackIcon from "./TechStackIcon";
 import { Project } from "@/types/project";
@@ -19,6 +26,18 @@ interface ProjectsProps {
 
 export default function Projects({ projects }: ProjectsProps) {
   const defaultImage = "/icons/placeholder.png";
+
+  // State to track expanded descriptions
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const toggleDescription = (projectId: string) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [projectId]: !prev[projectId],
+    }));
+  };
 
   if (!projects || projects.length === 0) {
     return (
@@ -38,61 +57,90 @@ export default function Projects({ projects }: ProjectsProps) {
         .map((project) => (
           <Card
             key={project.id}
-            className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300"
+            className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 overflow-hidden"
           >
             <CardHeader className="p-0">
-              <div className="relative w-full h-48 overflow-hidden">
+              <div className="relative w-full h-56 sm:h-64 overflow-hidden">
                 <Image
                   src={project.imageUrl || defaultImage}
                   alt={`${project.title} thumbnail`}
                   fill
-                  className="object-cover rounded-t-lg transition-transform duration-300 hover:scale-105"
+                  className="object-cover transition-transform duration-500 hover:scale-110"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     if (target.src !== defaultImage) {
-                      target.src = defaultImage; // Set fallback image only once
+                      target.src = defaultImage;
                     }
                   }}
                 />
               </div>
             </CardHeader>
-            <CardContent className="flex-grow p-6">
-              <CardTitle className="text-xl font-bold mb-3 line-clamp-1">
+
+            <CardContent className="flex-grow p-4 space-y-3">
+              <CardTitle className="text-lg font-bold line-clamp-1">
                 {project.title}
               </CardTitle>
-              <p className="text-muted-foreground mb-6 line-clamp-3">
-                {project.description}
-              </p>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="space-y-2">
+                <p
+                  className={`text-sm text-muted-foreground ${
+                    expandedDescriptions[project.id] ? "" : "line-clamp-2"
+                  }`}
+                >
+                  {project.description}
+                </p>
+                {project.description.length > 100 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="flex items-center gap-1 text-xs p-0 h-auto hover:bg-transparent hover:text-primary"
+                    onClick={() => toggleDescription(project.id)}
+                  >
+                    {expandedDescriptions[project.id] ? (
+                      <>
+                        <ChevronUp className="h-4 w-4" />
+                        <span>Show less</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-4 w-4" />
+                        <span>Show more</span>
+                      </>
+                    )}
+                  </Button>
+                )}
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-2">
                 {project.technologies.map((tech, index) => (
                   <div
                     key={index}
-                    className="flex items-center bg-secondary/30 rounded-md p-2"
+                    className="flex items-center bg-secondary/20 rounded-lg p-2 hover:bg-secondary/30 transition-colors"
                   >
-                    <TechStackIcon name={tech} className="h-6 w-6" />
+                    <TechStackIcon name={tech} className="h-7 w-7" />
                   </div>
                 ))}
               </div>
             </CardContent>
-            <CardFooter className="flex gap-3 p-6 pt-0">
+
+            <CardFooter className="flex gap-3 p-4 pt-0">
               {project.githubUrl && (
                 <Button
                   variant="outline"
-                  className="flex-1 flex items-center gap-2 hover:bg-secondary"
+                  className="flex-1 flex items-center justify-center gap-2 hover:bg-secondary h-12"
                   onClick={() => window.open(project.githubUrl, "_blank")}
                 >
                   <Github className="h-5 w-5" />
-                  <span className="font-medium">Code</span>
+                  <span className="font-semibold">Code</span>
                 </Button>
               )}
               {project.liveUrl && (
                 <Button
-                  className="flex-1 flex items-center gap-2 bg-primary hover:bg-primary/90"
+                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 h-12"
                   onClick={() => window.open(project.liveUrl, "_blank")}
                 >
                   <ExternalLink className="h-5 w-5" />
-                  <span className="font-medium">Demo</span>
+                  <span className="font-semibold">Live Demo</span>
                 </Button>
               )}
             </CardFooter>

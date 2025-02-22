@@ -5,16 +5,25 @@ export const TECH_STACKS = {
     icon: "/icons/react.svg",
     category: "frontend",
   },
-  "Next.js": {
-    icon: "/icons/next-js.svg",
-    category: "frontend",
-  },
-  "Material UI": {
-    icon: "/icons/mui.svg",
+  MaterialUI: {
+    icon: "/icons/Material UI.svg",
     category: "frontend",
   },
   Tailwindcss: {
     icon: "/icons/tailwindcss.svg",
+    category: "frontend",
+  },
+  CSS: {
+    icon: "/icons/css.svg",
+    category: "frontend",
+  },
+  HTML: {
+    icon: "/icons/html.svg",
+    category: "frontend",
+  },
+
+  Figma: {
+    icon: "/icons/Figma.svg",
     category: "frontend",
   },
   "Styled Components": {
@@ -23,7 +32,7 @@ export const TECH_STACKS = {
   },
 
   // Backend
-  "Node.js": {
+  NodeJS: {
     icon: "/icons/nodejs.svg",
     category: "backend",
   },
@@ -31,7 +40,7 @@ export const TECH_STACKS = {
     icon: "/icons/expressjs.svg",
     category: "backend",
   },
-  "Spring Boot": {
+  Springboot: {
     icon: "/icons/springboot.svg",
     category: "backend",
   },
@@ -39,16 +48,24 @@ export const TECH_STACKS = {
     icon: "/icons/flask.svg",
     category: "backend",
   },
+  FastAPI: {
+    icon: "/icons/FastAPI.svg",
+    category: "backend",
+  },
   NextJS: {
     icon: "/icons/nextjs.svg",
     category: "backend",
   },
   Langchain: {
-    icon: "/icons/langchain-text.svg",
+    icon: "/icons/langchain-color.svg",
     category: "backend",
   },
   HuggingFace: {
     icon: "/icons/huggingface.svg",
+    category: "backend",
+  },
+  PyTorch: {
+    icon: "/icons/PyTorch.svg",
     category: "backend",
   },
 
@@ -90,12 +107,12 @@ export const TECH_STACKS = {
     icon: "/icons/mongodb.svg",
     category: "database",
   },
-  Oracle: {
-    icon: "/icons/oracle.svg",
+  ChromaDB: {
+    icon: "/icons/chromadb.svg",
     category: "database",
   },
-  Firebase: {
-    icon: "/icons/firebase.svg",
+  Oracle: {
+    icon: "/icons/oracle.svg",
     category: "database",
   },
   Supabase: {
@@ -104,6 +121,10 @@ export const TECH_STACKS = {
   },
   Postgres: {
     icon: "/icons/Postgres.svg",
+    category: "database",
+  },
+  Firebase: {
+    icon: "/icons/Firebase.svg",
     category: "database",
   },
 
@@ -116,8 +137,12 @@ export const TECH_STACKS = {
     icon: "/icons/vercel.svg",
     category: "cloud",
   },
-  GitHub: {
+  Github: {
     icon: "/icons/github.svg",
+    category: "DevOps",
+  },
+  Bitbucket: {
+    icon: "/icons/BitBucket.svg",
     category: "DevOps",
   },
   Git: {
@@ -130,6 +155,18 @@ export const TECH_STACKS = {
   },
   PowerShell: {
     icon: "/icons/powershell.svg",
+    category: "DevOps",
+  },
+  Linux: {
+    icon: "/icons/linux.svg",
+    category: "DevOps",
+  },
+  Docker: {
+    icon: "/icons/docker.svg",
+    category: "DevOps",
+  },
+  Kubernetes: {
+    icon: "/icons/Kubernetes.svg",
     category: "DevOps",
   },
 } as const;

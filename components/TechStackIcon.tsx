@@ -1,5 +1,5 @@
 // components/TechStackIcon.tsx
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { TECH_STACKS, isValidTechStack } from "@/config/tech-stack";
 
 interface TechStackIconProps {
@@ -11,7 +11,7 @@ interface TechStackIconProps {
 
 export default function TechStackIcon({
   name,
-  size = 24,
+  size = 28,
   showLabel = true,
   className = "",
 }: TechStackIconProps) {
@@ -23,13 +23,15 @@ export default function TechStackIcon({
 
   return (
     <div className={`group relative ${className}`}>
-      <div className="w-10 h-10 rounded-lg bg-gray-50 p-1.5 hover:bg-gray-100 transition-colors flex items-center justify-center">
+      <div
+        className="relative rounded-lg bg-gray-50 p-1.5 hover:bg-gray-100 transition-colors flex items-center justify-center"
+        style={{ width: size, height: size }}
+      >
         <Image
           src={tech.icon}
-          alt={name}
-          width={size}
-          height={size}
-          className="object-contain"
+          alt={`${name} icon`}
+          layout="fill"
+          objectFit="contain"
         />
       </div>
       {showLabel && (
