@@ -1,5 +1,5 @@
 // components/TechStackIcon.tsx
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { TECH_STACKS, isValidTechStack } from "@/config/tech-stack";
 
 interface TechStackIconProps {

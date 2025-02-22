@@ -107,7 +107,7 @@ export const TECH_STACKS = {
     category: "database",
   },
 
-  // Tools & Platforms
+  // DevOps & Platforms
   AWS: {
     icon: "/icons/aws.svg",
     category: "cloud",
@@ -118,15 +118,19 @@ export const TECH_STACKS = {
   },
   GitHub: {
     icon: "/icons/github.svg",
-    category: "tools",
+    category: "DevOps",
+  },
+  Git: {
+    icon: "/icons/git.svg",
+    category: "DevOps",
   },
   Vite: {
     icon: "/icons/vitejs.svg",
-    category: "tools",
+    category: "DevOps",
   },
   PowerShell: {
     icon: "/icons/powershell.svg",
-    category: "tools",
+    category: "DevOps",
   },
 } as const;
 
