@@ -26,8 +26,6 @@ interface ProjectsProps {
 
 export default function Projects({ projects }: ProjectsProps) {
   const defaultImage = "/icons/placeholder.png";
-
-  // State to track expanded descriptions
   const [expandedDescriptions, setExpandedDescriptions] = useState<{
     [key: string]: boolean;
   }>({});
@@ -44,7 +42,7 @@ export default function Projects({ projects }: ProjectsProps) {
       <Alert variant="destructive" className="max-w-2xl mx-auto mt-8">
         <AlertCircle className="h-5 w-5" />
         <AlertDescription>
-          No projects available at the moment. Please check back later.
+          Unable to fetch projects. Please check back later or contact me below.
         </AlertDescription>
       </Alert>
     );
@@ -57,22 +55,26 @@ export default function Projects({ projects }: ProjectsProps) {
         .map((project) => (
           <Card
             key={project.id}
-            className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300"
           >
             <CardHeader className="p-0">
-              <div className="relative w-full h-56 sm:h-64 overflow-hidden">
-                <Image
-                  src={project.imageUrl || defaultImage}
-                  alt={`${project.title} thumbnail`}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-110"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    if (target.src !== defaultImage) {
-                      target.src = defaultImage;
-                    }
-                  }}
-                />
+              <div className="relative w-full">
+                <div className="relative w-full pt-[56.25%]">
+                  <Image
+                    src={project.imageUrl || defaultImage}
+                    alt={`${project.title} thumbnail`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="absolute top-0 left-0 w-full h-full object-contain bg-secondary/10"
+                    priority
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (target.src !== defaultImage) {
+                        target.src = defaultImage;
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </CardHeader>
 
