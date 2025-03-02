@@ -8,6 +8,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import ProjectsSkeleton from "@/components/ProjectSkeleton";
 import ProjectsError from "@/components/ProjectsError";
+import Footer from "./Footer";
 
 interface ClientLayoutProps {
   initialProjects: any[];
@@ -98,9 +99,10 @@ export default function ClientLayout({
         </Suspense>
       </section>
 
-      <section ref={contactRef} className="min-h-screen py-16" id="contact">
+      <section ref={contactRef} className="min-h-50vh py-16" id="contact">
         <Contact />
       </section>
+      <Footer />
     </main>
   );
 }

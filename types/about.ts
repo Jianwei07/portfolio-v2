@@ -6,6 +6,7 @@ export interface AboutData {
   title: string;
   description: string[];
   technologies: TechStackName[];
+  liveUrl?: string;
   imageSrc: string;
   altText: string;
   order: number;
@@ -22,6 +23,9 @@ export interface NotionAboutResponse {
     };
     Technologies: {
       multi_select: Array<{ name: string }>;
+    };
+    LiveURL?: {
+      url: string;
     };
     Image: {
       files: Array<{ file: { url: string } }>;

@@ -1,177 +1,105 @@
 // components/AboutSection.tsx
 "use client";
 import { FC } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { AboutData } from "@/types/about";
+import Image from "next/image";
 import TechStackIcon from "./TechStackIcon";
+import { AboutData } from "@/types/about";
 
 interface AboutSectionProps {
   about: AboutData;
+  isEven: boolean;
 }
 
-const AboutSection: FC<AboutSectionProps> = ({ about }) => {
-  const defaultImage = "/icons/placeholder.png";
+const AboutSection: FC<AboutSectionProps> = ({ about, isEven }) => {
+  const { title, description, technologies, imageSrc, altText } = about;
 
-  // Group technologies by category for better organization
-  const categories = {
-    Languages: [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "Java",
-      "C#",
-      "Go",
-      "Ruby",
-      "PHP",
-    ],
-    Frontend: [
-      "React",
-      "Vue",
-      "Angular",
-      "HTML",
-      "CSS",
-      "Tailwind",
-      "SCSS",
-      "Redux",
-    ],
-    Backend: ["Node.js", "Express", "Django", "Spring", "Laravel", "ASP.NET"],
-    Database: [
-      "MongoDB",
-      "MySQL",
-      "PostgreSQL",
-      "Redis",
-      "Firebase",
-      "Supabase",
-    ],
-    DevOps: ["Docker", "Kubernetes", "AWS", "Azure", "GCP", "CI/CD", "Git"],
-    Tools: ["Webpack", "Vite", "Jest", "Cypress", "Figma", "VS Code"],
-  };
-
-  const getTechCategory = (tech: string): string => {
-    for (const [category, techs] of Object.entries(categories)) {
-      if (techs.includes(tech)) return category;
-    }
-    return "Other";
-  };
-
-  const groupedTech: Record<string, string[]> = {};
-  about.technologies.forEach((tech) => {
-    const category = getTechCategory(tech);
-    if (!groupedTech[category]) groupedTech[category] = [];
-    groupedTech[category].push(tech);
-  });
+  // Handle both string and array formats for description
+  const descriptionArray = Array.isArray(description)
+    ? description
+    : [description].filter(Boolean);
 
   return (
-    <section className="py-16 px-4 sm:px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        {/* Minimal Header */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mb-16 flex flex-col sm:flex-row items-start gap-6"
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7 }}
+      className={`py-16 md:py-24 ${isEven ? "bg-amber-100/20" : ""}`}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div
+          className={`flex flex-col ${
+            isEven ? "md:flex-row-reverse" : "md:flex-row"
+          } items-center gap-8 md:gap-16`}
         >
-          <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
-            <Image
-              src={about.imageSrc || defaultImage}
-              alt={about.altText || `${about.title}`}
-              width={80}
-              height={80}
-              className="object-cover"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (target.src !== defaultImage) {
-                  target.src = defaultImage;
-                }
-              }}
-            />
+          {/* Image */}
+          <div className="w-full md:w-2/5 flex justify-center">
+            <div className="relative w-full h-[400px] max-w-sm overflow-hidden rounded-lg border-4 border-amber-50 shadow-lg">
+              {imageSrc && (
+                <Image
+                  src={imageSrc}
+                  alt={altText || title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+              )}
+            </div>
           </div>
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-medium text-gray-900 mb-2">
-              {about.title}
-            </h2>
-            <p className="text-gray-600 leading-relaxed max-w-xl">
-              {Array.isArray(about.description)
-                ? about.description[0]
-                : about.description}
-            </p>
-          </div>
-        </motion.div>
 
-        {/* Skills Timeline */}
-        <div className="space-y-12">
-          {Object.entries(groupedTech)
-            .filter(([_, techs]) => techs.length > 0)
-            .map(([category, techs], index) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="pb-8 border-b border-gray-100 last:border-0"
-              >
-                <div className="flex items-start justify-between flex-col sm:flex-row">
-                  <div className="mb-4 sm:mb-0 sm:w-1/4">
-                    <h3 className="text-lg font-medium text-gray-900">
-                      {category}
-                    </h3>
-                    <div className="w-12 h-0.5 bg-amber-400 mt-2"></div>
-                  </div>
+          {/* Content column */}
+          <motion.div
+            initial={{ opacity: 0, x: isEven ? 20 : -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="w-full md:w-3/5"
+          >
+            <div className="max-w-xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                {title}
+              </h2>
 
-                  <div className="sm:w-3/4">
-                    <div className="flex flex-wrap gap-3 mb-4">
-                      {techs.map((tech, i) => (
-                        <motion.div
-                          key={i}
-                          whileHover={{ y: -2 }}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 rounded-md"
-                        >
-                          <TechStackIcon
-                            name={tech}
-                            className="h-4 w-4 text-amber-500"
-                          />
-                          <span className="text-sm text-gray-700">{tech}</span>
-                        </motion.div>
-                      ))}
-                    </div>
+              <div className="text-gray-700 mb-8">
+                {descriptionArray.map((paragraph, idx) => (
+                  <p key={idx} className="mb-4 text-lg">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
 
-                    <p className="text-sm text-gray-600 mt-3">
-                      {Array.isArray(about.description) &&
-                      about.description[index + 1]
-                        ? about.description[index + 1]
-                        : `Experience with ${category.toLowerCase()} technologies`}
-                    </p>
+              {/* Divider */}
+              <div className="h-px w-full max-w-md bg-gray-300 my-8"></div>
+
+              {technologies && technologies.length > 0 && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                    Technologies
+                  </h3>
+                  <div className="flex flex-wrap gap-4">
+                    {technologies.map((tech) => (
+                      <motion.div
+                        key={tech}
+                        whileHover={{ y: -4 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <TechStackIcon
+                          name={tech}
+                          size={36}
+                          showLabel
+                          className="transition-all"
+                        />
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              )}
+            </div>
+          </motion.div>
         </div>
-
-        {/* Mobile Skills Overview */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-12 sm:hidden"
-        >
-          <h3 className="text-lg font-medium text-gray-900 mb-4">All Skills</h3>
-          <div className="flex flex-wrap gap-2">
-            {about.technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="text-xs px-2 py-1 bg-gray-50 rounded text-gray-600"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

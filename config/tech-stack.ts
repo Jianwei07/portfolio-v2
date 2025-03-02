@@ -2,7 +2,7 @@
 export const TECH_STACKS = {
   // Frontend
   React: {
-    icon: "/icons/react.svg",
+    icon: "/icons/React.svg",
     category: "frontend",
   },
   MaterialUI: {
@@ -14,7 +14,7 @@ export const TECH_STACKS = {
     category: "frontend",
   },
   CSS: {
-    icon: "/icons/css.svg",
+    icon: "/icons/CSS3.svg",
     category: "frontend",
   },
   HTML: {
@@ -33,7 +33,7 @@ export const TECH_STACKS = {
 
   // Backend
   NodeJS: {
-    icon: "/icons/nodejs.svg",
+    icon: "/icons/Nodejs.svg",
     category: "backend",
   },
   Express: {
@@ -41,7 +41,7 @@ export const TECH_STACKS = {
     category: "backend",
   },
   Springboot: {
-    icon: "/icons/springboot.svg",
+    icon: "/icons/Spring.svg",
     category: "backend",
   },
   Flask: {
@@ -104,7 +104,7 @@ export const TECH_STACKS = {
 
   // Database
   MongoDB: {
-    icon: "/icons/mongodb.svg",
+    icon: "/icons/MongoDB.svg",
     category: "database",
   },
   ChromaDB: {
@@ -112,7 +112,7 @@ export const TECH_STACKS = {
     category: "database",
   },
   Oracle: {
-    icon: "/icons/oracle.svg",
+    icon: "/icons/Oracle.svg",
     category: "database",
   },
   Supabase: {
@@ -145,6 +145,18 @@ export const TECH_STACKS = {
     icon: "/icons/BitBucket.svg",
     category: "DevOps",
   },
+  Confluence: {
+    icon: "/icons/confluence.svg",
+    category: "DevOps",
+  },
+  Jira: {
+    icon: "/icons/jira.svg",
+    category: "DevOps",
+  },
+  Miro: {
+    icon: "/icons/miro.svg",
+    category: "DevOps",
+  },
   Git: {
     icon: "/icons/git.svg",
     category: "DevOps",
@@ -168,6 +180,21 @@ export const TECH_STACKS = {
   Kubernetes: {
     icon: "/icons/Kubernetes.svg",
     category: "DevOps",
+  },
+
+  // Others
+
+  Threads: {
+    icon: "/icons/Threads.svg",
+    category: "Others",
+  },
+  Google: {
+    icon: "/icons/google.svg",
+    category: "Others",
+  },
+  GoogleAnalytics: {
+    icon: "/icons/google-analytics.svg",
+    category: "Others",
   },
 } as const;
 

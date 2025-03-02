@@ -50,7 +50,6 @@ const Header = ({
 
   const navItems: NavItem[] = [
     { id: "home", name: "Home", icon: Home, onClick: scrollToHome },
-    { id: "about", name: "About", icon: User, route: "/about" },
     {
       id: "projects",
       name: "Projects",
@@ -58,6 +57,7 @@ const Header = ({
       onClick: scrollToProjects,
     },
     { id: "contact", name: "Contact", icon: Mail, onClick: scrollToContact },
+    { id: "about", name: "About Me", icon: User, route: "/about" },
   ];
 
   const handleNavClick = (callback?: () => void) => {
