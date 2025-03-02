@@ -2,7 +2,7 @@
 export const TECH_STACKS = {
   // Frontend
   React: {
-    icon: "/icons/React.svg",
+    icon: "/icons/react.svg",
     category: "frontend",
   },
   MaterialUI: {
@@ -33,7 +33,7 @@ export const TECH_STACKS = {
 
   // Backend
   NodeJS: {
-    icon: "/icons/Nodejs.svg",
+    icon: "/icons/nodejs.svg",
     category: "backend",
   },
   Express: {
