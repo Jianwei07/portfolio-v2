@@ -2,13 +2,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X, Home, User, FolderGit2, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+interface NavItem {
+  id: string;
+  name: string;
+  icon: React.FC<{ className?: string }>;
+  onClick?: () => void;
+  route?: string;
+}
 
 interface HeaderProps {
   activeSection: string;
   scrollToHome: () => void;
-  scrollToAbout: () => void;
+  // Remove scrollToAbout since About is now a separate route.
   scrollToProjects: () => void;
   scrollToContact: () => void;
 }
@@ -16,7 +25,6 @@ interface HeaderProps {
 const Header = ({
   activeSection,
   scrollToHome,
-  scrollToAbout,
   scrollToProjects,
   scrollToContact,
 }: HeaderProps) => {
@@ -34,19 +42,15 @@ const Header = ({
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { id: "home", name: "Home", icon: Home, onClick: scrollToHome },
-    { id: "about", name: "About", icon: User, onClick: scrollToAbout },
+    { id: "about", name: "About", icon: User, route: "/about" },
     {
       id: "projects",
       name: "Projects",
@@ -56,9 +60,9 @@ const Header = ({
     { id: "contact", name: "Contact", icon: Mail, onClick: scrollToContact },
   ];
 
-  const handleNavClick = (callback: () => void) => {
+  const handleNavClick = (callback?: () => void) => {
     setIsOpen(false);
-    callback();
+    if (callback) callback();
   };
 
   return (
@@ -85,21 +89,35 @@ const Header = ({
 
             {/* Desktop navigation */}
             <div className="hidden lg:flex items-center justify-center flex-1 space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => item.onClick()}
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium transition-all duration-200",
-                    "relative hover:text-gray-900",
-                    activeSection === item.id
-                      ? "text-gray-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gray-900"
-                      : "text-gray-600"
-                  )}
-                >
-                  {item.name}
-                </button>
-              ))}
+              {navItems.map((item) =>
+                item.route ? (
+                  <Link
+                    key={item.id}
+                    href={item.route}
+                    className={cn(
+                      "px-3 py-2 text-sm font-medium transition-all duration-200 relative hover:text-gray-900",
+                      activeSection === item.id
+                        ? "text-gray-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gray-900"
+                        : "text-gray-600"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.onClick)}
+                    className={cn(
+                      "px-3 py-2 text-sm font-medium transition-all duration-200 relative hover:text-gray-900",
+                      activeSection === item.id
+                        ? "text-gray-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gray-900"
+                        : "text-gray-600"
+                    )}
+                  >
+                    {item.name}
+                  </button>
+                )
+              )}
             </div>
           </nav>
         </div>
@@ -142,22 +160,38 @@ const Header = ({
           </div>
 
           <nav className="p-4">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.onClick)}
-                className={cn(
-                  "flex items-center gap-3 w-full p-3 rounded-lg transition-colors duration-200",
-                  "text-sm font-medium",
-                  activeSection === item.id
-                    ? "bg-gray-50 text-gray-900"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                )}
-              >
-                <item.icon className="h-5 w-5" />
-                <span>{item.name}</span>
-              </button>
-            ))}
+            {navItems.map((item) =>
+              item.route ? (
+                <Link
+                  key={item.id}
+                  href={item.route}
+                  onClick={() => handleNavClick()}
+                  className={cn(
+                    "flex items-center gap-3 w-full p-3 rounded-lg transition-colors duration-200 text-sm font-medium",
+                    activeSection === item.id
+                      ? "bg-gray-50 text-gray-900"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  <span>{item.name}</span>
+                </Link>
+              ) : (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.onClick)}
+                  className={cn(
+                    "flex items-center gap-3 w-full p-3 rounded-lg transition-colors duration-200 text-sm font-medium",
+                    activeSection === item.id
+                      ? "bg-gray-50 text-gray-900"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  <span>{item.name}</span>
+                </button>
+              )
+            )}
           </nav>
         </div>
       </div>

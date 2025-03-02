@@ -77,14 +77,13 @@ export default function ClientLayout({
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
-  }, [refs]); // refs is now stable, so this useEffect runs only once
+  }, [refs]);
 
   return (
     <main className="min-h-screen relative">
       <Header
         activeSection={activeSection}
         scrollToHome={() => scrollToSection("home")}
-        scrollToAbout={() => scrollToSection("about")}
         scrollToProjects={() => scrollToSection("projects")}
         scrollToContact={() => scrollToSection("contact")}
       />
@@ -92,10 +91,6 @@ export default function ClientLayout({
       <section ref={homeRef} className="min-h-screen" id="home">
         <Hero />
       </section>
-
-      {/* Uncomment and add your About component when ready */}
-      {/* <section ref={aboutRef} className="min-h-screen py-16" id="about">
-      </section> */}
 
       <section ref={projectsRef} className="min-h-screen py-16" id="projects">
         <Suspense fallback={<ProjectsSkeleton />}>

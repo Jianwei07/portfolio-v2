@@ -13,7 +13,7 @@ const TechIcon = ({ name, icon }: { name: string; icon: string }) => {
           alt={name}
           layout="fill"
           objectFit="contain"
-          className="opacity-75 group-hover:opacity-100"
+          className="opacity-95 group-hover:opacity-100"
           aria-label={`${name} logo`}
         />
       </div>
