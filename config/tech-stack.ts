@@ -112,7 +112,7 @@ export const TECH_STACKS = {
     category: "database",
   },
   Oracle: {
-    icon: "/icons/Oracle.svg",
+    icon: "/icons/oracle.svg",
     category: "database",
   },
   Supabase: {
