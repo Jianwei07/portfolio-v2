@@ -26,12 +26,17 @@ export const TECH_STACKS = {
     icon: "/icons/Figma.svg",
     category: "frontend",
   },
+
   "Styled Components": {
     icon: "/icons/styled-components.svg",
     category: "frontend",
   },
 
   // Backend
+  Notion: {
+    icon: "/icons/notion.svg",
+    category: "backend",
+  },
   NodeJS: {
     icon: "/icons/nodejs.svg",
     category: "backend",
