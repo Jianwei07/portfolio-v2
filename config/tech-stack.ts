@@ -26,6 +26,10 @@ export const TECH_STACKS = {
     icon: "/icons/Figma.svg",
     category: "frontend",
   },
+  Shadcn: {
+    icon: "/icons/shadcn.svg",
+    category: "frontend",
+  },
 
   "Styled Components": {
     icon: "/icons/styled-components.svg",
