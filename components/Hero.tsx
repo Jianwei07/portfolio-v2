@@ -33,7 +33,15 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    setIsVisible(true); // filepath: c:\Users\liawj\Documents\Github\portfolio-v2\components\Hero.tsx
+    const techStacks = [
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+      { name: "HuggingFace", icon: "/icons/huggingface.svg" },
+      { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
+      { name: "Linux", icon: "/icons/linux.svg" },
+      { name: "TypeScript", icon: "/icons/TypeScript.svg" }, // TypeScript is here
+      { name: "JavaScript", icon: "/icons/JavaScript.svg" }, // Add this line
+    ];
   }, []);
 
   const techStacks = [
@@ -41,7 +49,8 @@ const Hero = () => {
     { name: "HuggingFace", icon: "/icons/huggingface.svg" },
     { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
     { name: "Linux", icon: "/icons/linux.svg" },
-    { name: "TypeScript", icon: "/icons/typescript.svg" },
+    { name: "TypeScript", icon: "/icons/TypeScript.svg" }, // TypeScript is here
+    { name: "JavaScript", icon: "/icons/JavaScript.svg" }, // Add this line
   ];
 
   return (

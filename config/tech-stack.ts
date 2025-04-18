@@ -80,15 +80,15 @@ export const TECH_STACKS = {
 
   // Languages
   JavaScript: {
-    icon: "/icons/javascript.svg",
+    icon: "/icons/JavaScript.svg",
     category: "language",
   },
   TypeScript: {
-    icon: "/icons/typescript.svg",
+    icon: "/icons/TypeScript.svg",
     category: "language",
   },
   Java: {
-    icon: "/icons/java.svg",
+    icon: "/icons/Java.svg",
     category: "language",
   },
   Dart: {
