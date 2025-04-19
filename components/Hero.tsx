@@ -40,7 +40,6 @@ const Hero = () => {
       { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
       { name: "Linux", icon: "/icons/linux.svg" },
       { name: "TypeScript", icon: "/icons/TypeScript.svg" }, // TypeScript is here
-      { name: "JavaScript", icon: "/icons/JavaScript.svg" }, // Add this line
     ];
   }, []);
 
@@ -50,7 +49,6 @@ const Hero = () => {
     { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
     { name: "Linux", icon: "/icons/linux.svg" },
     { name: "TypeScript", icon: "/icons/TypeScript.svg" }, // TypeScript is here
-    { name: "JavaScript", icon: "/icons/JavaScript.svg" }, // Add this line
   ];
 
   return (
