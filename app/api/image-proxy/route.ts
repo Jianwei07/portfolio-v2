@@ -55,10 +55,11 @@ export async function GET(request: NextRequest) {
     // Fetch the image from the original source (Notion/AWS)
     const response = await fetch(imageUrl, {
       headers: {
-        // Avoid forwarding sensitive headers from the original request
-        "User-Agent": "JaydenPortfolio-ImageProxy/1.0", // Identify your proxy
+        "User-Agent": "JaydenPortfolio-ImageProxy/1.0",
       },
-      signal: AbortSignal.timeout(20000), // Increased timeout to 20 seconds (20000 ms)
+      next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days (serverless cache hint)
+      cache: "force-cache", // allow CDN caching of this fetch
+      signal: AbortSignal.timeout(20000),
     });
 
     if (!response.ok) {
@@ -79,14 +80,12 @@ export async function GET(request: NextRequest) {
     // Get content type and image buffer
     const contentType =
       response.headers.get("content-type") || "application/octet-stream";
-    const imageBuffer = await response.arrayBuffer();
+    const readable = response.body as ReadableStream;
 
-    // Return the image data with appropriate headers
-    return new NextResponse(imageBuffer, {
+    return new NextResponse(readable, {
       status: 200,
       headers: {
         "Content-Type": contentType,
-        // Cache aggressively: public, 1 week immutable
         "Cache-Control": "public, max-age=604800, immutable",
       },
     });

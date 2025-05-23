@@ -6,8 +6,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
-        port: "",
-        pathname: "/**", // Allow all paths under this hostname
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "secure.notion-static.com",
+        pathname: "/**",
       },
     ],
   },

@@ -93,6 +93,7 @@ export default function Projects({ projects }: ProjectsProps) {
                     src={getImageSrc(project)} // Use the function to get the source
                     alt={`${project.title} thumbnail`}
                     fill
+                    unoptimized
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjusted sizes
                     className="absolute top-0 left-0 w-full h-full object-contain bg-secondary/10" // Changed object-cover to object-contain
                     priority={project.order <= 3} // Prioritize loading images for the first few projects
