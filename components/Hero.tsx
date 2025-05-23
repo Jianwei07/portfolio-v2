@@ -39,7 +39,7 @@ const Hero = () => {
       { name: "HuggingFace", icon: "/icons/huggingface.svg" },
       { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
       { name: "Linux", icon: "/icons/linux.svg" },
-      { name: "TypeScript", icon: "/icons/TypeScript.svg" }, // TypeScript is here
+      { name: "TypeScript", icon: "/icons/typescript.svg" }, // TypeScript is here
     ];
   }, []);
 
@@ -48,7 +48,7 @@ const Hero = () => {
     { name: "HuggingFace", icon: "/icons/huggingface.svg" },
     { name: "TailwindCSS", icon: "/icons/tailwindcss.svg" },
     { name: "Linux", icon: "/icons/linux.svg" },
-    { name: "TypeScript", icon: "/icons/TypeScript.svg" }, // TypeScript is here
+    { name: "TypeScript", icon: "/icons/typescript.svg" }, // TypeScript is here
   ];
 
   return (
@@ -60,6 +60,10 @@ const Hero = () => {
         className="max-w-5xl mx-auto w-full"
       >
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+          <div
+            className="absolute inset-0 z-10"
+            onContextMenu={(e) => e.preventDefault()}
+          />
           {/* Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -78,8 +82,8 @@ const Hero = () => {
                 alt="Jayden Liaw"
                 layout="fill"
                 objectFit="cover"
-                className="transform"
                 priority
+                className="pointer-events-none select-none"
                 aria-label="Profile picture of Jayden Liaw"
               />
             </motion.div>

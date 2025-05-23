@@ -95,6 +95,10 @@ const AboutIntro: FC = () => {
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100 rounded-full -z-10 transform translate-x-6 -translate-y-6 opacity-50"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-200 rounded-full -z-10 transform -translate-x-4 translate-y-4 opacity-50"></div>
+                <div
+                  className="absolute inset-0 z-10"
+                  onContextMenu={(e) => e.preventDefault()}
+                />
 
                 {/* Image container */}
                 <motion.div
@@ -107,7 +111,7 @@ const AboutIntro: FC = () => {
                     alt="Jayden Liaw"
                     width={300}
                     height={300}
-                    className="object-cover w-full aspect-square"
+                    className="object-cover w-full aspect-square pointer-events-none select-none"
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent"></div>
