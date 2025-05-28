@@ -25,12 +25,10 @@ interface ProjectsProps {
 }
 
 export default function Projects({ projects }: ProjectsProps) {
-  const [expandedDescriptions, setExpandedDescriptions] = useState<{
-    [key: string]: boolean;
-  }>({});
-  const [imageErrors, setImageErrors] = useState<{ [key: string]: boolean }>(
-    {}
-  );
+  const [expandedDescriptions, setExpandedDescriptions] = useState<
+    Record<string, boolean>
+  >({});
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   const toggleDescription = (projectId: string) => {
     setExpandedDescriptions((prev) => ({
@@ -79,7 +77,7 @@ export default function Projects({ projects }: ProjectsProps) {
             >
               <CardHeader className="p-0">
                 <div className="relative w-full">
-                  <div className="relative w-full pt-[56.25%] overflow-hidden">
+                  <div className="relative w-full pt-[56.25%] overflow-hidden rounded-t-md">
                     {src ? (
                       <Image
                         src={src}
@@ -92,7 +90,7 @@ export default function Projects({ projects }: ProjectsProps) {
                         onError={() => handleImageError(project.id)}
                       />
                     ) : (
-                      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-100 animate-pulse">
+                      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-100 animate-pulse rounded-t-md">
                         <span className="text-gray-400 text-sm">
                           Loading image...
                         </span>

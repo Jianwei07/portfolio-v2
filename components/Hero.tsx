@@ -60,10 +60,6 @@ const Hero = () => {
         className="max-w-5xl mx-auto w-full"
       >
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-          <div
-            className="absolute inset-0 z-10"
-            onContextMenu={(e) => e.preventDefault()}
-          />
           {/* Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -76,6 +72,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
               className="absolute inset-0 overflow-hidden rounded-2xl"
+              onContextMenu={(e) => e.preventDefault()} // Only block right-click on the display pic
             >
               <Image
                 src="/images/jayden_dp.png"
