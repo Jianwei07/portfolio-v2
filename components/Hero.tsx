@@ -99,7 +99,7 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 font-public-sans"
             >
-              Software Engineer & Tech Enthusiast
+              Aspiring Data Scientist & AI Engineer
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -107,14 +107,17 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="text-gray-600 text-sm sm:text-base lg:text-lg mb-6 max-w-2xl"
             >
-              Hello! I`m Jayden, a Full-Stack Engineer passionate about building
-              impactful solutions. Based in Singapore, I specialize in software
-              architecture and modern development practices.
+              Hello I`m Jayden, currently a Data Scientist at Kyndryl Singapore.
+              My experiences spans across in applied AI, full-stack, and
+              enterprise-scale banking (3DS), with research in predictive
+              modeling for geotechnical engineering.
             </motion.p>
             <p className="text-gray-600 text-sm sm:text-base lg:text-lg mb-6 max-w-2xl">
-              Currently exploring Applied AI, implementing and adopting
-              artificial intelligence in existing solutions to create more
-              intelligent and adaptive systems.
+              Passionate about AI-driven strategies and digital transformation.
+              Starting August 2025, I’ll pursue a Master of Computing at NUS to
+              deepen my expertise in applied AI and product innovation. Always
+              open to connecting with fellow innovators in product, consulting,
+              or digital strategy.
             </p>
 
             {/* Social Links */}
